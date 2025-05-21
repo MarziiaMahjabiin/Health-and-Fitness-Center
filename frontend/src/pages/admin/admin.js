@@ -305,7 +305,7 @@ const AdminDashboard = () => {
                         onChange={(e) => handleUpdateUserRole(user._id, e.target.value)}
                         style={styles.roleDropdown}
                       >
-                        <option value="client">Client</option>
+                        <option value="user">User</option>
                         <option value="trainer">Trainer</option>
                         <option value="nutritionist">Nutritionist</option>
                         <option value="admin">Admin</option>
