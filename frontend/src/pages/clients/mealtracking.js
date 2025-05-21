@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import ClientNavBar from './ClientNavBar';
-import { Line } from 'react-chartjs-2';
-import { Chart, LineElement, CategoryScale, LinearScale, PointElement, Tooltip, Legend } from 'chart.js';
-
-Chart.register(LineElement, CategoryScale, LinearScale, PointElement, Tooltip, Legend);
 
 const MealTracking = () => {
   const [meals, setMeals] = useState([]);
@@ -97,50 +93,6 @@ const MealTracking = () => {
 
   const dailyCalories = calculateDailyCalories();
 
-  // Prepare data for the chart
-  const sortedDates = Object.keys(dailyCalories).sort();
-  const chartData = {
-    labels: sortedDates,
-    datasets: [
-      {
-        label: 'Calories Consumed',
-        data: sortedDates.map(date => dailyCalories[date]),
-        fill: false,
-        borderColor: '#28a745',
-        backgroundColor: '#28a745',
-        tension: 0.2,
-      },
-    ],
-  };
-
-  const chartOptions = {
-    responsive: true,
-    plugins: {
-      legend: {
-        display: true,
-        position: 'top',
-      },
-      tooltip: {
-        enabled: true,
-      },
-    },
-    scales: {
-      y: {
-        beginAtZero: true,
-        title: {
-          display: true,
-          text: 'Calories',
-        },
-      },
-      x: {
-        title: {
-          display: true,
-          text: 'Date',
-        },
-      },
-    },
-  };
-
   return (
     <>
       <ClientNavBar />
@@ -202,11 +154,6 @@ const MealTracking = () => {
             ))}
           </tbody>
         </table>
-
-        <h2>Calories Consumed Over Time</h2>
-        <div style={{ maxWidth: '700px', margin: '0 auto', background: '#fff', padding: '1rem', borderRadius: '8px' }}>
-          <Line data={chartData} options={chartOptions} />
-        </div>
 
         <h2>Daily Calorie Summary</h2>
         <table style={styles.table}>
